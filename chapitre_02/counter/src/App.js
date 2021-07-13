@@ -1,6 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import Counter from "./components/counter/Counter";
+
 import './App.css';
 import './styles/global.css';
 
@@ -11,31 +13,28 @@ class App extends React.Component {
     this.state = {
       count: 0
     };
+
+    
   }
+  addFunction=()=> {
+    this.setState({
+      count: this.state.count+1
+    })
+  }
+  substractFunction=()=> {
+    if(this.state.count >0 ) {
+      this.setState({
+        count: this.state.count-1
+      })
+    }
+  }
+
   render() {
     return (
       <div className="container-fluid">
         <div className="row">
           <h1>Counter</h1>
-          <h2>{this.state.count}</h2>
-          <button style={{backgroundColor:"green"}}
-            onClick={()=> {
-              this.setState(num => {
-                return {count: num.count + 1}
-              })
-            }}
-          >
-          +
-          </button>
-          <button style={{backgroundColor:"red"}}
-            onClick={()=> {
-              this.setState(num => {
-                return {count: num.count - 1}
-              })
-            }}
-          >
-          -
-          </button>
+          <Counter count={this.state.count} addFunction={this.addFunction} substractFunction={this.substractFunction} />
         </div>
       </div>
     );
