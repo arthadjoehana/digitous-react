@@ -16,10 +16,10 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <Box icon="local_drink" value={1.5} unit="L" color="#3A85FF" />
-          <Box icon="directions_walk" value={3000} unit="steps" color="black" />
-          <Box icon="favorite" value={120} unit="bpm" color="red" />
-          <Box icon="wb_sunny" value={-10} unit="°C" color="yellow" />
+          <Box icon="local_drink" color="#3A85FF" value={1.5} unit=" L" />
+          <Box icon="directions_walk" color="black" value={3000} unit=" steps" />
+          <Box icon="favorite" color="red" value={120} unit=" bpm" />
+          <Box icon="wb_sunny" color="yellow" value={-10} unit=" °C" />
           <p>Heart : {heartMin} </p>
           <p>temperature : {tempMin} </p>
           <p>Steps : {stepsMin} </p>
