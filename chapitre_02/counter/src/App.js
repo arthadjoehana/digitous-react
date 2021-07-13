@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Counter from "./components/counter/Counter";
+import Counter from "./components/Counter";
 
 import './App.css';
 import './styles/global.css';
