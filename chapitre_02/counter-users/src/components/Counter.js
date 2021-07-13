@@ -7,7 +7,7 @@ class Counter extends React.Component {
 
   render() {
     return (
-      <div className="counter col-sm-12 col-6">
+      <div>
         <h2>{this.props.count}</h2>
           <button style={{backgroundColor:"green"}}
             onClick={this.props.addFunction}
