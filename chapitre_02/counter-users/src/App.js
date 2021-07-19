@@ -33,7 +33,7 @@ class App extends React.Component {
       this.setState({
         count: this.state.count-1
       })
-      listOfUsers.pop(users[this.state.count])
+      listOfUsers.pop()
       console.log(listOfUsers)
     }
   }
@@ -41,15 +41,14 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="app">
         <div>
           <h1>Counter</h1>
           <Counter count={this.state.count} addFunction={this.addFunction} substractFunction={this.substractFunction} />
         </div>
         <div>
-          <p></p>
           {listOfUsers.map((user) =>(
-            <UserInfo name={user.name} />
+            <UserInfo key={user.id} username={user.username} name={user.name} email={user.email} website={user.website} />
         ))}
         </div>
 
