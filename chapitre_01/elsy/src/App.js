@@ -50,22 +50,22 @@ class App extends React.Component {
   }
   calculateWater =()=> {
     let drinkWater = 1.5
+    let x = 0
+    let y = 0
+    let z = 0
     if (this.state.temperature > 20) {
-      for (let i = 20 ; i < this.state.temperature ; i++) {
-        drinkWater = drinkWater + drinkWater*0.02
-        
-      }
+      let multiplier = this.state.temperature - 20
+      x = multiplier*0.02
     }
     if (this.state.heart > 120) {
-      for (let i = 120 ; i < this.state.theart ; i++) {
-        drinkWater = drinkWater + drinkWater*0.0008
-      }
+      let multiplier = this.state.heart - 120
+      y = multiplier*0.0008
     }
     if (this.state.steps > 10000) {
-      for (let i = 10000 ; i < this.state.steps ; i++) {
-        drinkWater = drinkWater + drinkWater*0.00002
-      }
+      let multiplier = this.state.steps - 10000
+      z = multiplier*0.00002
     }
+    drinkWater = drinkWater + x + y + z
     this.setState((prevState) => {
       return {
         ...prevState,
