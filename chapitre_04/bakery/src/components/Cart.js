@@ -1,15 +1,17 @@
 import React from 'react';
+import './Cart.css'
 class Cart extends React.Component {
+    deleteItem = (e) => {
+        this.props.removeItem();
+        e.preventDefault();
+    }
     render(){
         return(
-            <div>
-                Your shopping cart
-                <ul>
-                {this.props.items.map((item) =>(
-                    <li>{item.name} {item.price} €</li>
-                ))}
-                </ul>
-                
+            <div className="item-list">
+                <p className="item">
+                <span>{this.props.name}</span>
+                <span>{this.props.price} € <button onClick={this.deleteItem}>Remove</button></span>
+                </p>
             </div>
         )
     }

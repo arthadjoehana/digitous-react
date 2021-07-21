@@ -25,28 +25,29 @@ class App extends React.Component {
     this.setState((prevState) => {
       return {
         ...prevState,
-        heart: e.target.value
+        heart: e.target.value,
+        water: this.calculateWater(e.target.value)
       };
     });
-    this.calculateWater();
+    
   }
   onStepsChange =(e)=> {
     this.setState((prevState) => {
       return {
         ...prevState,
-        steps: e.target.value
+        steps: e.target.value,
+        water: this.calculateWater(e.target.value)
       };
     });
-    this.calculateWater();
   }
   onTemperatureChange =(e)=> {
     this.setState((prevState) => {
       return {
         ...prevState,
-        temperature: e.target.value
+        temperature: e.target.value,
+        water: this.calculateWater(e.target.value)
       };
     });
-    this.calculateWater();
   }
   calculateWater =()=> {
     let drinkWater = 1.5
@@ -65,11 +66,10 @@ class App extends React.Component {
       let multiplier = this.state.steps - 10000
       z = multiplier*0.00002
     }
-    drinkWater = drinkWater + x + y + z
     this.setState((prevState) => {
       return {
         ...prevState,
-        water: drinkWater
+        water: drinkWater + x + y + z
       };
     });
   }

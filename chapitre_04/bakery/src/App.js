@@ -48,13 +48,28 @@ class App extends React.Component {
     });
     console.log(this.state.items)
   }
-
+  removeItem =()=> {
+    const removeItem = this.state.items
+    delete removeItem[this.state.key]
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        items: removeItem
+      };
+    });
+    console.log(removeItem)
+  }
  
 
-  renderActiveTab () {
+  render () {
     if (this.state.activeTab === "add"){
       return (
         <div>
+          <div className="tab">
+            <Button children="Add" style={{backgroundColor:'blue'}} onClick={this.selectAdd} />
+            <Button children="Cart" style={{backgroundColor:'white'}} onClick={this.selectCart} />
+            <Button children="Pay" style={{backgroundColor:'white'}} onClick={this.selectPay} />
+          </div>
           <Add addItem={this.addItem} />
         </div>
       )
@@ -62,31 +77,29 @@ class App extends React.Component {
     if (this.state.activeTab === "cart"){
       return (
         <div>
-          <Cart items={this.state.items} />
+          <div className="tab">
+            <Button children="Add" style={{backgroundColor:'white'}} onClick={this.selectAdd} />
+            <Button children="Cart" style={{backgroundColor:'blue'}} onClick={this.selectCart} />
+            <Button children="Pay" style={{backgroundColor:'white'}} onClick={this.selectPay} />
+          </div>
+          {this.state.items.map((item) => (
+            <Cart key={item.key} name={item.name} price={item.price} removeItem={this.removeItem} />
+          ))}
         </div>
       )
     }
     if (this.state.activeTab === "pay"){
       return (
         <div>
-          <Pay />
+          <div className="tab">
+            <Button children="Add" style={{backgroundColor:'white'}} onClick={this.selectAdd} />
+            <Button children="Cart" style={{backgroundColor:'white'}} onClick={this.selectCart} />
+            <Button children="Pay" style={{backgroundColor:'blue'}} onClick={this.selectPay} />
+          </div>
+          <Pay items={this.state.items} />
         </div>
       )
     }
-  }
-  render () {
-    return (
-      <div className="app">
-        <div className="tab">
-        <Button children="Add" onClick={this.selectAdd} />
-        <Button children="Cart" onClick={this.selectCart} />
-        <Button children="Pay" onClick={this.selectPay} />
-        </div>
-        {this.renderActiveTab()}
-      </div>
-      
-      
-    )
   }
 }
 
