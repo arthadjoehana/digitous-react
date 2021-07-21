@@ -14,20 +14,46 @@ class App extends React.Component {
     this.onPasswordChange = this.onPasswordChange.bind(this)
   }
   onEmailChange(e) {
-    this.setState({ email: e.target.value })
+ 
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        email: e.target.value
+      };
+    });
     const email_validator_regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if(email_validator_regex(e.target.value)){
-      this.setState({isValidEmail:true})
-    }else{
-      this.setState({isValidEmail:false})
+    if (email_validator_regex(e.target.value)){
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          isValidEmail: true
+        };
+      });
+    } else {
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          isValidEmail: false
+        };
+      });
     }
   }
   onPasswordChange(e) {
     this.setState({ password: e.target.value })
     if (e.target.value.length >= 6) {
-      this.setState({ isValidPassword: true })
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          isValidPassword: true
+        };
+      });  
     } else {
-      this.setState({ isValidPassword: false })
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          isValidPassword: false
+        };
+      });
     }
   }
   render() {
@@ -50,3 +76,5 @@ class App extends React.Component {
     );
   }
 }
+
+export default App;
