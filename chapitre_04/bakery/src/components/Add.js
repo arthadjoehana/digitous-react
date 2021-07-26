@@ -4,7 +4,6 @@ class Add extends React.Component {
     constructor() {
         super();
         this.state = {
-            key: 0,
             productName: "",
             price: 1
         };
@@ -26,24 +25,19 @@ class Add extends React.Component {
         });
     }
     insertItem = (e) => {
-        this.setState((prevState) => {
-            return {
-              ...prevState,
-              key: this.state.key + 1
-            };
-        });
         this.props.addItem({
-            key: this.state.key,
+            id: this.props.items.length,
             name: this.state.productName, 
             price: this.state.price
         })
         e.preventDefault();
+        this.props.updateTotal()
     }
     render(){
         return(
             <div className="add-item">
             <input type="text" onChange={this.updateProductName}></input>
-            <input type="range" min={1} max={10} onChange={this.updatePrice}></input>
+            <input type="range" min={1} max={10} value={this.state.price} onChange={this.updatePrice}></input>
             <button onClick={this.insertItem}>Add to Cart</button>
             </div>
         )

@@ -10,7 +10,8 @@ class App extends React.Component {
     super();
     this.state = {
       activeTab: "add",
-      items: []
+      items: [],
+      total: 0
     };
   }
   selectAdd =()=> {
@@ -48,18 +49,29 @@ class App extends React.Component {
     });
     console.log(this.state.items)
   }
-  removeItem =()=> {
+  removeItem =(item)=> {
     const removeItem = this.state.items
-    delete removeItem[this.state.key]
+    delete removeItem[item.key]
     this.setState((prevState) => {
       return {
         ...prevState,
         items: removeItem
       };
     });
-    console.log(removeItem)
   }
- 
+  updateTotal =()=> {
+    let totalPrice = 0
+    this.state.items.map((item)=>(
+      totalPrice = totalPrice + parseInt(item.price)
+    ))
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        total: totalPrice
+      };
+    });
+    console.log("total is", totalPrice);
+  }
 
   render () {
     if (this.state.activeTab === "add"){
@@ -70,7 +82,7 @@ class App extends React.Component {
             <Button children="Cart" style={{backgroundColor:'white'}} onClick={this.selectCart} />
             <Button children="Pay" style={{backgroundColor:'white'}} onClick={this.selectPay} />
           </div>
-          <Add addItem={this.addItem} />
+          <Add addItem={this.addItem} items={this.state.items} updateTotal={this.updateTotal} />
         </div>
       )
     }
@@ -83,7 +95,7 @@ class App extends React.Component {
             <Button children="Pay" style={{backgroundColor:'white'}} onClick={this.selectPay} />
           </div>
           {this.state.items.map((item) => (
-            <Cart key={item.key} name={item.name} price={item.price} removeItem={this.removeItem} />
+            <Cart removeItem={this.removeItem} key={item.id} id={item.id} name={item.name} price={item.price} />
           ))}
         </div>
       )
@@ -96,7 +108,7 @@ class App extends React.Component {
             <Button children="Cart" style={{backgroundColor:'white'}} onClick={this.selectCart} />
             <Button children="Pay" style={{backgroundColor:'blue'}} onClick={this.selectPay} />
           </div>
-          <Pay items={this.state.items} />
+          <Pay items={this.state.items} total={this.state.total} />
         </div>
       )
     }

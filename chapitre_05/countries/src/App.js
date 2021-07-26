@@ -1,5 +1,6 @@
 import React from "react"
 import Button from './components/Button.js'
+import Card from './components/Card.js'
 
 class App extends React.Component {
   constructor() {
@@ -25,8 +26,12 @@ class App extends React.Component {
       })
     })
   }
+
+
+
   getCountry(country) {
-    fetch("https://restcountries.eu/rest/v2/name/" + country)
+    country = this.state.name.toLocaleLowerCase()
+    fetch("https://restcountries.eu/rest/v2/name/")
     .then((res) => res.json())
     .then((data)=> {
       this.setState({
@@ -41,14 +46,17 @@ class App extends React.Component {
   render() {
     return(
       <div className='container'>
-        <Button  className='btn' children='France' onClick={this.getCountry} />
-        <Button className='btn' children='Brazil' onClick={this.getCountry} />
-        <Button className='btn' children='Croatia' onClick={this.getCountry} />
-        <p>name={this.state.name}</p>
-        <p>capital={this.state.capital}</p>
-        <img style={{maxWidth: '50px'}} src={this.state.flag} alt=""></img>
-        <p>population={this.state.population}</p>
-        <p>region={this.state.region}</p>
+        <div>
+          <Button className='btn' children='France' onClick={()=> this.getCountry("france")} />
+          <Button className='btn' children='Brazil' onClick={()=> this.getCountry("brazil")} />
+          <Button className='btn' children='Croatia' onClick={()=> this.getCountry("croatia")} />
+          <p>name={this.state.name}</p>
+          <p>capital={this.state.capital}</p>
+          <img style={{maxWidth: '50px'}} src={this.state.flag} alt=""></img>
+          <p>population={this.state.population}</p>
+          <p>region={this.state.region}</p>
+        </div>
+        <Card countryInfo={{...this.state}} />
       </div>
     )
   }
