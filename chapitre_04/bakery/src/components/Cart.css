@@ -1,0 +1,15 @@
+.item {
+    border: solid 1px rgb(194, 194, 194);
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    font-size: 3rem;
+    padding: 10px;
+}
+
+.delete-button {
+    font-size: 3rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
