@@ -8,10 +8,10 @@ export default class Home extends React.Component {
         <div>
         <h1>Home</h1>
         <ul>
-            {this.props.catalog.map(num => {
+            {this.props.catalog.map(film => {
                 return <li>
-                    <Link to = {'/' + num.id}>
-                    {num.title}
+                    <Link to = {'/' + film.id}>
+                    {film.title}
                     </Link>
                 </li>
             }
